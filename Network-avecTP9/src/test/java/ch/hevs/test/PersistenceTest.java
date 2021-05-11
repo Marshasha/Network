@@ -32,10 +32,8 @@ public class PersistenceTest {
 			OperationalSystem os1 = new OperationalSystem("Windows");
 			OperationalSystem os2 = new OperationalSystem("Android");
 			
-			u1.addDevice(new Computer("Asus", os1));
-			u1.addDevice(new MobilePhone("Samsung", os2));
-
-			
+//			u1.addDevice(new Computer("Asus", os1));
+//			u1.addDevice(new MobilePhone("Samsung", os2));
 
 
 			em.persist(u1);

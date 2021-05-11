@@ -11,12 +11,12 @@ public class CreateSchemaTest extends TestCase {
 	public void test() {
 
 		Configuration cfg = new Configuration();
-		cfg.addAnnotatedClass(ch.hevs.businessobject.User.class);
-		cfg.addAnnotatedClass(ch.hevs.businessobject.Device.class);
 		cfg.addAnnotatedClass(ch.hevs.businessobject.Computer.class);
+		cfg.addAnnotatedClass(ch.hevs.businessobject.Device.class);
 		cfg.addAnnotatedClass(ch.hevs.businessobject.MobilePhone.class);
-		cfg.addAnnotatedClass(ch.hevs.businessobject.Tablet.class);
 		cfg.addAnnotatedClass(ch.hevs.businessobject.OperationalSystem.class);
+		cfg.addAnnotatedClass(ch.hevs.businessobject.Tablet.class);
+		cfg.addAnnotatedClass(ch.hevs.businessobject.User.class);
 		
 		cfg.setProperty("hibernate.dialect",
 				"org.hibernate.dialect.HSQLDialect");
@@ -25,7 +25,7 @@ public class CreateSchemaTest extends TestCase {
 		cfg.setProperty("hibernate.connection.driver_class",
 				"org.hsqldb.jdbcDriver");
 		cfg.setProperty("hibernate.connection.url",
-				"jdbc:hsqldb:hsql://localhost:10002/DB");
+				"jdbc:hsqldb:hsql://localhost/DB");
 		cfg.setProperty("hibernate.connection.username", "sa");
 		cfg.setProperty("hibernate.connection.password", "");
 

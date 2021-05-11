@@ -6,16 +6,14 @@
 	version="1.0">
 
 
-	<persistence-unit name="bankPU">
+	<persistence-unit name="networkPU">
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>ch.hevs.businessobject.Client</class>
-		<class>ch.hevs.businessobject.Banker</class>
-		<class>ch.hevs.businessobject.Address</class>
-		<class>ch.hevs.businessobject.InternalAccount</class>
-		<class>ch.hevs.businessobject.ExternalAccount</class>
-		<class>ch.hevs.businessobject.Operation</class>
-		<class>ch.hevs.businessobject.Agency</class>
+		<class>ch.hevs.businessobject.Computer</class>
+		<class>ch.hevs.businessobject.MobilePhone</class>
+		<class>ch.hevs.businessobject.OperationalSystem</class>
+		<class>ch.hevs.businessobject.Tablet</class>
+		<class>ch.hevs.businessobject.User</class>
 		<properties>
 			<property name="hibernate.connection.url"
 				value="jdbc:hsqldb:hsql://localhost/DB" />

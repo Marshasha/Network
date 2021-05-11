@@ -1,16 +1,29 @@
 package ch.hevs.businessobject;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
 @Entity
 public class MobilePhone extends Device {
 
-	@OneToMany
-    private User owner;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
 
-    public MobilePhone(String name, OperationalSystem os) {
+    public long getId() {
+		return id;
+	}
+
+/*	@OneToMany
+    private User owner;
+*/	
+	 public MobilePhone() {super();}
+
+/*    public MobilePhone(String name, OperationalSystem os) {
 
         super(name, os);
         this.owner= new User();
@@ -28,4 +41,5 @@ public class MobilePhone extends Device {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+    */
 }

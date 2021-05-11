@@ -4,11 +4,14 @@ package ch.hevs.businessobject;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class OperationalSystem {
@@ -19,13 +22,10 @@ public class OperationalSystem {
 	
     private String operationalSystemName;
     
-    @ManyToOne
+/*    @OneToMany(mappedBy = "devicesAvailable", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Device> devices;
-
-    public void setOsId(long osId) {
-        this.osId = osId;
-    }
-
+*/
+    
     public void setOperationalSystemName(String operationalSystemName) {
         this.operationalSystemName = operationalSystemName;
     }
@@ -42,13 +42,13 @@ public class OperationalSystem {
     	this.operationalSystemName=osName;
     }
     
-    public OperationalSystem() {
+/*    public OperationalSystem() {
     	devices = new HashSet<Device>(); 
     }
     
     public void addDevice(Device d) {
     	devices.add(d);
     }
-    
+ */   
    
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,17 +13,17 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+// @Entity
+// @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Device {
 
-	@Id
+/*	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long deviceId;
-    
+*/    
     private String name;
     
-    @OneToMany(cascade = CascadeType.ALL)  
+/*    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)  
     private OperationalSystem os;
     
    
@@ -41,18 +42,18 @@ public abstract class Device {
     public void setDeviceId(Long deviceId) {
         this.deviceId = deviceId;
     }
-
+*/
     public void setName(String name) {
         this.name = name;
     }
 
-    public Long getDeviceId() {
+/*    public Long getDeviceId() {
         return deviceId;
     }
-    
+*/    
     public Device() {}
 
-    public Device(String name, OperationalSystem os){
+/*    public Device(String name, OperationalSystem os){
         this.name=name;
         this.os = os;
     }
@@ -63,4 +64,6 @@ public abstract class Device {
     public String toString(){
         return "This device is " + getName() + " with OS : " + getOs().getOperationalSystemName();
     }
+ */
+    
 }

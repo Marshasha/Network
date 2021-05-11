@@ -5,10 +5,12 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -19,12 +21,13 @@ public class User {
     private String loginName;
     private String name;
     
-    @ManyToMany(mappedBy = "owners", cascade = CascadeType.ALL)
-    private Set<Device> devices;
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+//    @ManyToMany(mappedBy = "owners", cascade = CascadeType.ALL)
+ //   private Set<Device> devices;
+    
+/*    @OneToMany(mappedBy = "tablet", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Device> devices;
+    
+*/
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
@@ -33,12 +36,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
-   
-    public void setDevices(Set<Device> devices) {
-        this.devices = devices;
-    }
-
+    
     public long getUserId() {
         return userId;
     }
@@ -51,23 +49,27 @@ public class User {
         return name;
     }
 
+    /*   
+    public void setDevices(Set<Device> devices) {
+        this.devices = devices;
+    }
+
     public Set<Device> getDevices() {
         return devices;
     }
-    
+*/    
     public User() {
-    	this.devices = new HashSet<Device>();
+//    	this.devices = new HashSet<Device>();
     }
-
     public User (String loginName, String name){
         this.loginName=loginName;
         this.name=name;
-        devices = new HashSet<Device>();
+//        devices = new HashSet<Device>();
     }
-
+/*    
     public void addDevice(Device d){
         devices.add(d);
         d.addOwner(this);
     }
-
+*/
 }
