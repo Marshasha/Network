@@ -24,13 +24,16 @@ public class Tablet extends Device {
     private User owner;
 */
     
+    @ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private OperationalSystem osTablet;
+    
 	public Tablet() {super();}
 
-/*    public Tablet(String name, OperationalSystem os) {
+    public Tablet(String name, OperationalSystem os) {
         super(name, os);
-        this.owner = new User();
+//        this.owner = new User();
     }
-
+/*
     @Override
     public void addOwner(User user) {
         owner = user;

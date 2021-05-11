@@ -22,7 +22,16 @@ public class OperationalSystem {
 	
     private String operationalSystemName;
     
-/*    @OneToMany(mappedBy = "devicesAvailable", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "osMobPhon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<MobilePhone> phones;
+
+    @OneToMany(mappedBy = "osTablet", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Tablet> tablets;
+
+    @OneToMany(mappedBy = "osComputer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Computer> computers;
+
+ /*   @OneToMany(mappedBy = "os", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Device> devices;
 */
     
@@ -49,6 +58,24 @@ public class OperationalSystem {
     public void addDevice(Device d) {
     	devices.add(d);
     }
- */   
+ */
+    
+    public OperationalSystem() {
+    	phones = new HashSet<MobilePhone>();
+    	tablets = new HashSet<Tablet>();    	
+    	computers = new HashSet<Computer>();    	   	
+    }
+    
+    public void addTablet(Tablet t) {
+    	tablets.add(t);
+    }
+      
+    public void addMobPhone(MobilePhone mp) {
+    	phones.add(mp);
+    }
+
+    public void addDevice(Computer c) {
+    	computers.add(c);
+    }
    
 }

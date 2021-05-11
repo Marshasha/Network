@@ -1,9 +1,12 @@
 package ch.hevs.businessobject;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -18,17 +21,21 @@ public class MobilePhone extends Device {
 		return id;
 	}
 
+    @ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private OperationalSystem osMobPhon;
+    
 /*	@OneToMany
     private User owner;
 */	
 	 public MobilePhone() {super();}
 
-/*    public MobilePhone(String name, OperationalSystem os) {
+    public MobilePhone(String name, OperationalSystem os) {
 
         super(name, os);
-        this.owner= new User();
+//        this.owner= new User();
     }
-
+    
+/*
     @Override
     public void addOwner(User user) {
         owner = user;

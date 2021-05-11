@@ -10,6 +10,7 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>ch.hevs.businessobject.Computer</class>
+		<class>ch.hevs.businessobject.Device</class>
 		<class>ch.hevs.businessobject.MobilePhone</class>
 		<class>ch.hevs.businessobject.OperationalSystem</class>
 		<class>ch.hevs.businessobject.Tablet</class>
