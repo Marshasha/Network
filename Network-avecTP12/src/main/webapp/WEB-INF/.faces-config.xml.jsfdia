@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#welcomeNetwork.xhtml"
+  PATH="/welcomeNetwork.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#welcomeNetwork.xhtml:0" NAME="item"
+   PATH="/welcomeNetwork.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="manageParkIT::#manageParkIT.xhtml"
+    NAME="output" PATH="/manageParkIT.xhtml"
+    TARGET="rules:#manageParkIT.xhtml" TITLE="manageParkIT" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#manageParkIT.xhtml"
+  PATH="/manageParkIT.xhtml" SHAPE="240,33,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#justHaveALookOnPark.xhtml"
+  PATH="/justHaveALookOnPark.xhtml" SHAPE="720,72,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#manageUsers.xhtml" PATH="/manageUsers.xhtml"
+  SHAPE="696,8,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>
