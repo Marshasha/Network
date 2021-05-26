@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#welcomeNetwork.xhtml"
-  PATH="/welcomeNetwork.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  PATH="/welcomeNetwork.xhtml" SHAPE="79,30,0,0"
+  model-entity="JSFProcessGroup" persistent="true">
   <PROCESS-ITEM ID="rules:#welcomeNetwork.xhtml:0" NAME="item"
    PATH="/welcomeNetwork.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="showAdminAccount::#showAdminAccount.xhtml"
+    NAME="output" PATH="/showAdminAccount.xhtml"
+    TARGET="rules:#showAdminAccount.xhtml" TITLE="showAdminAccount" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showAdminAccount.xhtml"
+  PATH="/showAdminAccount.xhtml" SHAPE="224,40,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#showAdminAccount.xhtml:0" NAME="item"
+   PATH="/showAdminAccount.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="manageParkIT::#manageParkIT.xhtml"
     NAME="output" PATH="/manageParkIT.xhtml"
     TARGET="rules:#manageParkIT.xhtml" TITLE="manageParkIT" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="justHaveALookOnPark::#justHaveALookOnPark.xhtml" NAME="output1"
+    PATH="/justHaveALookOnPark.xhtml"
+    TARGET="rules:#justHaveALookOnPark.xhtml"
+    TITLE="justHaveALookOnPark" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#manageParkIT.xhtml"
-  PATH="/manageParkIT.xhtml" SHAPE="240,33,0,0"
+  PATH="/manageParkIT.xhtml" SHAPE="432,40,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#justHaveALookOnPark.xhtml"
-  PATH="/justHaveALookOnPark.xhtml" SHAPE="720,72,50,25"
+  PATH="/justHaveALookOnPark.xhtml" SHAPE="453,103,0,0"
   model-entity="JSFProcessGroup" persistent="true"/>
- <PROCESS-ITEM NAME="rules:#manageUsers.xhtml" PATH="/manageUsers.xhtml"
-  SHAPE="696,8,50,25" model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

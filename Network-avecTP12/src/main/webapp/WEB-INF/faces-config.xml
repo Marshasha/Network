@@ -10,9 +10,22 @@
   <display-name>welcomeNetwork.xhtml</display-name>
   <from-view-id>/welcomeNetwork.xhtml</from-view-id>
   <navigation-case>
+   <from-outcome>showAdminAccount</from-outcome>
+   <to-view-id>/showAdminAccount.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <display-name>showAdminAccount.xhtml</display-name>
+  <from-view-id>/showAdminAccount.xhtml</from-view-id>
+  <navigation-case>
    <from-outcome>manageParkIT</from-outcome>
    <to-view-id>/manageParkIT.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>justHaveALookOnPark</from-outcome>
+   <to-view-id>/justHaveALookOnPark.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
- <application/>
+ 
+
 </faces-config>
