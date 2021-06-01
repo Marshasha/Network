@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#welcomeNetwork.xhtml"
+  PATH="/welcomeNetwork.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#welcomeNetwork.xhtml:0" NAME="item"
+   PATH="/welcomeNetwork.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="reportForm::#reportForm.xhtml" NAME="output"
+    PATH="/reportForm.xhtml" TARGET="rules:#reportForm.xhtml"
+    TITLE="reportForm" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showAdminAccount::#showAdminAccount.xhtml"
+    NAME="output1" PATH="/showAdminAccount.xhtml"
+    TARGET="rules:#showAdminAccount.xhtml" TITLE="showAdminAccount" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#reportForm.xhtml" PATH="/reportForm.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#reportForm.xhtml:0" NAME="item"
+   PATH="/reportForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="#{distributionBean.showAllDevicesData}::#showAllDevicesData.xhtml"
+    NAME="output" PATH="/showAllDevicesData.xhtml"
+    TARGET="rules:#showAllDevicesData.xhtml"
+    TITLE="#{distributionBean.showAllDevicesData}" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showAllDevicesData.xhtml"
+  PATH="/showAllDevicesData.xhtml" SHAPE="448,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#justHaveALookOnPark.xhtml"
+  PATH="/justHaveALookOnPark.xhtml" SHAPE="528,112,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#manageParkIT.xhtml"
+  PATH="/manageParkIT.xhtml" SHAPE="360,128,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#manageParkIT.xhtml:0" NAME="item"
+   PATH="/manageParkIT.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="justHaveALookOnPark::#justHaveALookOnPark.xhtml" NAME="output"
+    PATH="/justHaveALookOnPark.xhtml"
+    TARGET="rules:#justHaveALookOnPark.xhtml"
+    TITLE="justHaveALookOnPark" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showAdminAccount.xhtml"
+  PATH="/showAdminAccount.xhtml" SHAPE="168,128,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#showAdminAccount.xhtml:0" NAME="item"
+   PATH="/showAdminAccount.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="manageParkIT::#manageParkIT.xhtml"
+    NAME="output" PATH="/manageParkIT.xhtml"
+    TARGET="rules:#manageParkIT.xhtml" TITLE="manageParkIT" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#welcomeNetwork.xhtml"
+  PATH="/welcomeNetwork.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#welcomeNetwork.xhtml:0" NAME="item"
+   PATH="/welcomeNetwork.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="reportForm::#reportForm.xhtml" NAME="output"
+    PATH="/reportForm.xhtml" TARGET="rules:#reportForm.xhtml"
+    TITLE="reportForm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#reportForm.xhtml" PATH="/reportForm.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#reportForm.xhtml:0" NAME="item"
+   PATH="/reportForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="#{distributionBean.showAllDevicesData}::#showAllDevicesData.xhtml"
+    NAME="output" PATH="/showAllDevicesData.xhtml"
+    TARGET="rules:#showAllDevicesData.xhtml"
+    TITLE="#{distributionBean.showAllDevicesData}" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showAllDevicesData.xhtml"
+  PATH="/showAllDevicesData.xhtml" SHAPE="448,17,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

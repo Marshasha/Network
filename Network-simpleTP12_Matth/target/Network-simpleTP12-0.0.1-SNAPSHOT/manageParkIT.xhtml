@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+	<h:panelGrid columns="5">
+		<h:form>
+			<h:outputLabel value="To do list by :"></h:outputLabel>
+			<br></br>
+			<h:panelGrid columns="5">
+				<h:outputText value="Operating System: "></h:outputText>
+				<h:selectOneMenu value="#{distributionBean.osName}"
+					valueChangeListener="#{distributionBean.listOfDevicesByOS}"
+					onchange="submit()">
+					<f:selectItems itemValue="All operating System"/>
+					<f:selectItems value="#{distributionBean.osNames}" />
+				</h:selectOneMenu>
+				<Br></Br>			
+			</h:panelGrid>
+			<h:commandButton value="Manage device(s) with this OS))"
+				action="#{distributionBean.performHaveALook}"></h:commandButton>
+		</h:form>
+		<h:outputText value=" " />
+		<h:form>
+			<h:outputLabel value="Devices corresponding 
+								at the OS"></h:outputLabel>
+			<br></br>
+			<h:panelGrid columns="5">
+				<h:outputText value="Device : "></h:outputText>
+				<h:selectOneMenu value="#{distributionBean.deviceName}"
+					valueChangeListener="#{distributionBean.listOfUsersByDevice}"
+					onchange="submit()" label="Select a device">				
+					<f:selectItems value="#{distributionBean.deviceNames}" />
+				</h:selectOneMenu>
+				<Br></Br>			
+			</h:panelGrid>
+			<h:commandButton value="Manage this device"
+				action="#{distributionBean.listOfUsersByDevice}"></h:commandButton>
+		</h:form>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>
