@@ -45,6 +45,8 @@ public interface Network {
 	public Tablet getTablet(long TabletId);
 
 	public void newTablet(String name, OperationalSystem os);
+	
+	public List<User> getUserByDevice(Device device);
 
 	public List<Computer> getComputersByOS(String os);
 
@@ -52,7 +54,9 @@ public interface Network {
 
 	public List<MobilePhone> getMobilePhonesByOS(String os);
 
-	public List<Device> getDevices(String osName);
+	public List<Device> getDevices();
+	
+	public List<Device> getDeviceByOs(String osName);
 
 	public OperationalSystem getOSById(long osId);
 
@@ -62,6 +66,8 @@ public interface Network {
 
 	public void newOS(String osName);
 	
-	void populate();	
+	public void deleteEntity(Object object, String className /* , String objectName */);
+	
+	public void populate();	
 		
 }

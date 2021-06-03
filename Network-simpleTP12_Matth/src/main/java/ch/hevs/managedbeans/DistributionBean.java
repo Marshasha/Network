@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.Query;
 
 import ch.hevs.businessobject.Computer;
 import ch.hevs.businessobject.Device;
@@ -15,7 +16,6 @@ import ch.hevs.businessobject.OperationalSystem;
 import ch.hevs.businessobject.Tablet;
 import ch.hevs.businessobject.User;
 import ch.hevs.networkservice.Network;
-
 
 public class DistributionBean {
 
@@ -34,34 +34,31 @@ public class DistributionBean {
 	private String deviceDescription;
 	private List<String> deviceNames;
 	private List<String> deviceDescriptions;
-	private List<Device> devices = new ArrayList <Device> ();
-	
+	private List<Device> devices = new ArrayList<Device>();
+
 	private Computer computer;
 	private List<String> computerNames;
 	private String computerName;
 	private List<Computer> computers;
-	
+
 	private MobilePhone phone;
 	private List<String> phoneNames;
 	private String phoneName;
 	private List<MobilePhone> phones;
-	
+
 	private Tablet tablet;
 	private List<String> tabletrNames;
 	private String tabletName;
 	private List<String> tabletNames;
 	private List<Tablet> tablets;
-	
+
 	private String osName;
 	private OperationalSystem os;
 	private List<OperationalSystem> OSList;
 	private List<String> osNames;
 
-
-
 //	private List<Object> transactionresult;
 
-	
 	@PostConstruct
 	public void initialize() throws NamingException {
 
@@ -69,23 +66,25 @@ public class DistributionBean {
 		net = (Network) ctx
 				.lookup("java:global/Network-simpleTP12-0.0.1-SNAPSHOT/NetworkBean!ch.hevs.networkservice.Network");
 
-//		net.populate();
-
+		/** 
+		 * Méthode populate() à activer/désactiver selon volonté
+		 */
+		net.populate();
+		
 		List<User> userList = net.getUsers();
 		this.userLoginNames = new ArrayList<String>();
 		for (User user : userList) {
 			this.userLoginNames.add(user.getLoginName());
 		}
 
-	
-		getAllDevices ();
-				
+		getAllDevices();
+
 		List<OperationalSystem> osList = net.getListOS();
 		this.osNames = new ArrayList<String>();
 		for (OperationalSystem os : osList) {
 			this.osNames.add(os.getOperationalSystemName());
 		}
-		
+
 	}
 
 	public List<String> getUserLoginNames() {
@@ -107,6 +106,7 @@ public class DistributionBean {
 	public String getOsName() {
 		return osName;
 	}
+
 	public void setOsName(String osName) {
 		this.osName = osName;
 	}
@@ -114,6 +114,7 @@ public class DistributionBean {
 	public String getDeviceName() {
 		return deviceName;
 	}
+
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
 	}
@@ -121,6 +122,7 @@ public class DistributionBean {
 	public Device getDevice() {
 		return device;
 	}
+
 	public void setDevice(Device device) {
 		this.device = device;
 	}
@@ -128,12 +130,11 @@ public class DistributionBean {
 	public OperationalSystem getOs() {
 		return os;
 	}
+
 	public void setOs(OperationalSystem os) {
 		this.os = os;
 	}
 
-	
-	
 	public List<String> getDeviceNames() {
 		return deviceNames;
 	}
@@ -169,6 +170,7 @@ public class DistributionBean {
 	public List<OperationalSystem> getOSList() {
 		return OSList;
 	}
+
 	public void setOSList(List<OperationalSystem> oSList) {
 		OSList = oSList;
 	}
@@ -176,6 +178,7 @@ public class DistributionBean {
 	public List<Device> getDevices() {
 		return this.devices;
 	}
+
 	public void setDevices(List<Device> devicesList) {
 		this.devices = devicesList;
 	}
@@ -183,21 +186,22 @@ public class DistributionBean {
 	public List<String> getOsNames() {
 		return osNames;
 	}
+
 	public void setOsNames(List<String> osNames) {
 		this.osNames = osNames;
 	}
-    
-	// Appels	
+
+	// Appels
 	public void listOfOpSsyt(ValueChangeEvent event) {
-    	this.osName = (String)event.getNewValue();
-    	
-	    List<OperationalSystem> osList = net.getListOS();
-	    this.osNames = new ArrayList<String>();
+		this.osName = (String) event.getNewValue();
+
+		List<OperationalSystem> osList = net.getListOS();
+		this.osNames = new ArrayList<String>();
 		for (OperationalSystem os : osList) {
 			this.osNames.add(os.getOperationalSystemName());
 		}
-    }
-	
+	}
+
 	public void getDevicesByUser(ValueChangeEvent event) {
 		this.userloginName = (String) event.getNewValue();
 
@@ -221,140 +225,264 @@ public class DistributionBean {
 		return "Show all user devices data";
 	}
 
-	public void getAllDevices () {
+	public void getAllDevices() {
 		computers = net.getComputers();
 		phones = net.getMobilePhones();
 		tablets = net.getTablets();
-		
-		composeDeviceList (computers, phones, tablets);
-    }
 
+		composeDeviceList(computers, phones, tablets);
+		
+/*		devices = net.getDevices();
+		composeDeviceLists(devices);	
+		*/	
+	}
 	
-	public void listOfDevicesByOS (ValueChangeEvent event) {
-    	this.osName = (String)event.getNewValue();
-//		devices = new ArrayList<Device>();
-    	
+	
+
+	public void listOfDevicesByOS(ValueChangeEvent event) {
+		this.osName = (String) event.getNewValue();
+		devices = new ArrayList<Device>();
+
 		computers = new ArrayList<Computer>();
 		phones = new ArrayList<MobilePhone>();
 		tablets = new ArrayList<Tablet>();
 
-    	
-    	if (isValidParameter(osName) || osName != "All operating System") {
-	    	computers = net.getComputersByOS(osName);
-	    	phones = net.getMobilePhonesByOS(osName);
-	    	tablets = net.getTabletsByOS(osName);
-	    	
-	    	composeDeviceList (computers, phones, tablets);
-    	}
+		
+		if (isValidParameter(osName) || osName != "All operating System") {
+			
+/*			devices = net.getDeviceByOs(osName);
 
-   	
-    	if (!devices.isEmpty()) {
-    		devices.add(new Device("No Device")); 
-    	}
-	    	
-    }
-	
-	public String performHaveALook () {
-//    	this.osName = (String)event.getNewValue();
-    	
-//    	if (isInvalidParam(osName)) {
-/*	    	computers = net.getComputersByOS(this.os);
-	    	phones = net.getMobilePhonesByOS(this.os);
-	    	tablets = net.getTabletsByOS(this.os);
-	    	
-	    	composeDeviceList (computers, phones, tablets);
- //   	}
-
-/*    	if (!devices.isEmpty())
-    		getDevice();
+			composeDeviceLists(devices);
 */
- //   	if(devices.isEmpty())
-    	
-	    	return "justHaveALookOnPark";
-    }
-	
-	private boolean isValidParameter(String value) {
+			
+			computers = net.getComputersByOS(osName);
+			phones = net.getMobilePhonesByOS(osName);
+			tablets = net.getTabletsByOS(osName);
+
+			composeDeviceList(computers, phones, tablets);
+
+		}
+
+		if (!devices.isEmpty()) {
+			devices.add(new Device("No Device"));
+		}
+
+	}
+
+	public String performHaveALook() {
+//    	this.osName = (String)event.getNewValue();
+
+//    	if (isInvalidParam(osName)) {
+		/*
+		 * computers = net.getComputersByOS(this.os); phones =
+		 * net.getMobilePhonesByOS(this.os); tablets = net.getTabletsByOS(this.os);
+		 * 
+		 * composeDeviceList (computers, phones, tablets); // }
+		 * 
+		 * /* if (!devices.isEmpty()) getDevice();
+		 */
+		// if(devices.isEmpty())
+
+		return "justHaveALookOnPark";
+	}
+
+	public String displaylistOfUsersByDevice() {
 		
-		if (value != null || value != "")
-			return true;
-		
-		return false;
+		return "showUserOfDevice";
 	}
 	
-	public void listOfUsersByDevice (ValueChangeEvent event) {
-    	this.deviceName = (String)event.getNewValue();
-    	
-/*    	if (isValidParameter(deviceName)  deviceName != "All devices")
-    	{
-	    List<User> usereList = net.getUserByDevice(this.deviceName);
-	    this.userLoginNames = new ArrayList<String>();
-		for (User user : usereList) {
-			this.userLoginNames.add(user.getLoginName());
-		}
-		}
-*/
-    }
-	
-	
-	public void listOfDevicesByUser (ValueChangeEvent event) {
-    	this.userloginName = (String)event.getNewValue();
- /*   	
-    	computers = net.getComputerByUser(this.userloginName);  		    		
-    	phones = net.getMobilePhoneByUser(this.userloginName);
-       	tablets = net.getTabletByUser(this.userloginName);
-*/
-    	composeDeviceList (computers, phones, tablets);
+	private boolean isValidParameter(String value) {
 
-    }
-	
-	public void composeDeviceList (List<Computer> computerList, List<MobilePhone> mobilePhoneList, List<Tablet> tabletList) {
-		this.devices = new ArrayList<Device>();
+		if (value != null || value != "")
+			return true;
+
+		return false;
+	}
+
+/*	public void listOfUsersByDevice( ValueChangeEvent event) {
+//		this.deviceName = (String) event.getNewValue();
+
+		for (Device device : devices) {
+			if (deviceName == device.getName()) {
+				this.device = device;
+				break;
+			}
+
+		}
 		
+		if (device != null) {			
+			List<User> usereList = net.getUserByDevice(this.device);
+			this.userLoginNames = new ArrayList<String>();
+			for (User user : usereList) {
+				this.userLoginNames.add(user.getLoginName());
+			}
+		}
+
+	}
+*/	
+	public String showUsersByDevice() {
+		
+//		listOfUsersByDevice(deviceName);
+		
+		for (Device device : devices) {
+			if (deviceName == device.getName()) {
+				this.device = device;
+				break;
+			}
+
+		}
+		
+		if (device != null) {			
+			List<User> usereList = net.getUserByDevice(this.device);
+			this.userLoginNames = new ArrayList<String>();
+			for (User user : usereList) {
+				this.userLoginNames.add(user.getLoginName());
+			}
+		}
+		
+		return "showUsersByDevice";
+	}
+	
+	
+	public void deleteEntity(Object object /* ValueChangeEvent event */) {
+//		Object obj = new Object ();
+		String className = object.getClass().toString();		
+		String objectName = "";
+			
+		// Série de "if" car impossible de faire un "switch/case" sur un .getClass()
+		if (object.getClass().equals(User.class)) {
+			User obj = (User) object;
+			className = obj.getClass().toString();
+			objectName = obj.getLoginName();
+		}		
+		else if (object.getClass().equals(OperationalSystem.class)) {
+			OperationalSystem obj = (OperationalSystem) object;
+			className = obj.getClass().toString();
+			objectName = obj.getOperationalSystemName();
+		}		
+		else if (object.getClass().equals(Computer.class)) {
+			Computer obj = (Computer) object;
+			className = obj.getClass().toString();
+			objectName = obj.getName();
+		}		
+		else if (object.getClass().equals(MobilePhone.class)) {
+			MobilePhone obj = (MobilePhone) object;
+			className = obj.getClass().toString();
+			objectName = obj.getName();		
+			}		
+		else if (object.getClass().equals(Tablet.class)) {
+			Tablet obj = (Tablet) object;
+			className = obj.getClass().toString();
+			objectName = obj.getName();
+			}
+
+		className = className.substring(className.lastIndexOf(".")+1);
+		System.out.println(" className  :  " + className.toUpperCase());
+		
+		net.deleteEntity( object, className /* , objectName */ );
+		
+	}
+
+	public void listOfDevicesByUser(ValueChangeEvent event) {
+		this.userloginName = (String) event.getNewValue();
+		/*
+		 * computers = net.getComputerByUser(this.userloginName); phones =
+		 * net.getMobilePhoneByUser(this.userloginName); tablets =
+		 * net.getTabletByUser(this.userloginName);
+		 */
+//		composeDeviceList(computers, phones, tablets);
+		
+		
+		
+		composeDeviceLists(devices);
+
+
+	}
+
+
+	public void composeDeviceList(List<Computer> computerList, List<MobilePhone> mobilePhoneList,
+			List<Tablet> tabletList) {
+		this.devices = new ArrayList<Device>();
+
 		this.deviceNames = new ArrayList<String>();
 		for (Computer device : computerList) {
 			this.deviceNames.add(device.getName());
-			this.devices.add((Device) device);
+			this.devices.add(device);
 		}
 		for (MobilePhone device : mobilePhoneList) {
 			this.deviceNames.add(device.getName());
-			this.devices.add((Device) device);
+			this.devices.add(device);
 		}
 		for (Tablet device : tabletList) {
 			this.deviceNames.add(device.getName());
-			this.devices.add((Device) device);
+			this.devices.add(device);
 		}
 
 	}
-	
-	public void updateDeviceFromOS (ValueChangeEvent event) {
-/*		osName = (String) event.getNewValue();
 
-//		net.getOSByName(osName);
-		computers = net.getComputersByOS(net.getOSByName(osName));
+	public void composeDeviceLists(List<Device> devicesList) {
+
+		this.deviceNames = new ArrayList<String>();
+		this.computers = new ArrayList<Computer>();
+		this.computerNames = new ArrayList<String>();
+		this.phones = new ArrayList<MobilePhone>();
+		this.phoneNames = new ArrayList<String>();
+		this.tablets = new ArrayList<Tablet>();
+		this.tabletNames = new ArrayList<String>();
 		
-		listOfDevicesByOS(event);
-*/		
+		for (Device device : devices) {
+			this.deviceNames.add(device.getName());
+			
+			if(device.getClass().equals(Computer.class)) {
+				this.computerNames.add(device.getName());
+				this.computers.add((Computer) device);
+			}
+			if(device.getClass().equals(MobilePhone.class)) {
+				this.phoneNames.add(device.getName());
+				this.phones.add((MobilePhone) device);
+			}
+			if(device.getClass().equals(Tablet.class)) {
+				this.tabletNames.add(device.getName());
+				this.tablets.add((Tablet) device);
+			}
+				
+		}
+		
+/*			
+		for (Computer device : computerList) {
+			this.deviceNames.add(device.getName());
+			this.devices.add(device);
+		}
+		for (MobilePhone device : mobilePhoneList) {
+			this.deviceNames.add(device.getName());
+			this.devices.add(device);
+		}
+		for (Tablet device : tabletList) {
+			this.deviceNames.add(device.getName());
+			this.devices.add(device);
+		}
+*/
 	}
 	
-	public void updateDeviceNamesFromUser (ValueChangeEvent event) {
+
+	public void updateDeviceNamesFromUser(ValueChangeEvent event) {
 		this.userloginName = (String) event.getNewValue();
-		
-		
+
 	}
-	
-	public void updateOSNamesFromDevice (ValueChangeEvent event) {
+
+	public void updateOSNamesFromDevice(ValueChangeEvent event) {
 		deviceName = (String) event.getNewValue();
-				
-				
+
 	}
-	
+
 	public void getDeviceOS(ValueChangeEvent event) {
 		device = (Device) event.getNewValue();
-		
+
 		os = device.getOs();
-		
+
 		osName = os.getOperationalSystemName();
-		
+
 		os = device.getOs();
 	}
+
 }

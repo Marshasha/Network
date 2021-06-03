@@ -16,17 +16,17 @@
                 </h:column>
                 <h:column headerClass="en-tete">
                     <f:facet name="header">Nom matériel</f:facet>
-                    <h:inputHidden value="#{device}" valueChangeListener="#{distributionBean.getDeviceOS}"
-					onchange="submit()" />
+
                     <h:inputText value="#{device.name}"/>
                 </h:column>
                 <h:column headerClass="en-tete">
                     <f:facet name="header">OS du matériel</f:facet>
                     <h:inputText value="#{distributionBean.osName}" />
                 </h:column>
-                <h:column><h:commandButton value="Enregistrer" /></h:column>
                 <h:column>
-                    <h:commandButton value="Supprimer" />
+                <h:commandButton value="Show User(s)" action="#{distributionBean.displaylistOfUsersByDevice}"/></h:column>
+                <h:column>
+                    <h:commandButton value="Supprimer"  action="#{distributionBean.deleteEntity(device)}" />
                 </h:column>
             </h:dataTable>
 	</h:form>

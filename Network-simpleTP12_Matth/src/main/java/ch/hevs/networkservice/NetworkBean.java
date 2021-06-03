@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.event.ValueChangeEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -53,17 +54,94 @@ public class NetworkBean implements Network {
 	}
 */
 	public List<Computer> getAllComputersByUserLogin(String loginName) {
-		
-		return (List<Computer>) em.createQuery("SELECT u.computers FROM USER u WHERE u.loginname=:loginname")
+				
+		return (List<Computer>) em.createQuery("SELECT u.computers FROM User u WHERE u.loginname=:loginname")
 				.setParameter("loginname", loginName).getResultList();
 	}
+	
+	public List<User> getUserByDevice(Device device) {
+		List<User> users = new ArrayList<User>();
+		
+/*		
+		if(device.getClass().equals(Computer.class)) {			
+			Computer computer = (Computer) device;
+			
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM COMPUTER d WHERE d.id=:deviceId")
+					.setParameter("deviceId", computer.getId()).getResultList();
+		}
+		if(device.getClass().equals(MobilePhone.class)) {
+			MobilePhone mobilePhone = (MobilePhone) device;
+			
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM MOBILEPHONE d WHERE d.id=:deviceId")
+					.setParameter("deviceId", mobilePhone.getId()).getResultList();
+		}
+		if(device.getClass().equals(Tablet.class)) {
+			Tablet tablet = (Tablet) device;
 
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM TABLET d WHERE d.id=:deviceId")
+					.setParameter("deviceId", tablet.getId()).getResultList();
+		}
+*/		
+		if(device.getClass().equals(Computer.class)) {			
+			Computer computer = (Computer) device;
+			
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM COMPUTER d WHERE d.id=:device")
+					.setParameter("device", computer).getResultList();
+		}
+		if(device.getClass().equals(MobilePhone.class)) {
+			MobilePhone mobilePhone = (MobilePhone) device;
+			
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM MOBILEPHONE d WHERE d.id=:device")
+					.setParameter("device", mobilePhone).getResultList();
+		}
+		if(device.getClass().equals(Tablet.class)) {
+			Tablet tablet = (Tablet) device;
+
+			return (List<User>) em.createQuery("SELECT d.computerOwners FROM TABLET d WHERE d.id=:device")
+					.setParameter("device", tablet).getResultList();
+		}
+
+		users.add(new User("EMPTY List", "No user found", "No Logging"));
+		return users;
+	}
+
+	public void deleteEntity(Object object, String className) {
+		int updating = -1 ;
+		String queryString = "";
+		
+		switch (className) {
+		case "User":
+			queryString = "DELETE FROM User e WHERE e=:ref";
+			 break;
+			 
+		case "OperationalSystem":			
+			queryString = "DELETE FROM OperationalSystem e WHERE e=:ref";
+			 break;	
+
+/*		case "Device":
+			
+			queryString = "DELETE FROM Device e WHERE e=:ref";
+
+			 break;
+*/
+		case "Computer":			
+			queryString = "DELETE FROM Computer e WHERE e=:ref";
+			 break;
+			 
+		case "MobilePhone":		 
+			queryString = "DELETE FROM Tablet e WHERE e=:ref";
+			 break;			
+		}
+
+		updating = em.createQuery(queryString).setParameter("ref", object ).executeUpdate();
+		
+	}
 	public void addComputer(Computer c, User u) {
 
 		em.persist(c);
 		em.persist(u);
 		u.addComputer(c);
-		c.addOwner(u);;
+//		c.addOwner(u);;
 		
 	}
 	
@@ -212,8 +290,9 @@ public class NetworkBean implements Network {
 	}
 
 	@Override
-	public List<Device> getDevices(String osName) {
+	public List<Device> getDeviceByOs(String osName) {
 		List<Device> devices = new ArrayList<Device>();
+
 /*
 		OperationalSystem os = getOSByName(osName);
 
@@ -223,10 +302,29 @@ public class NetworkBean implements Network {
 */
 		return devices;
 
+//		return (List<Device>) em.createQuery("SELECT o.devices FROM Operationalsystem  where o.operationalSystemName=:osName").setParameter("osName", osName).getResultList();
+
+		}
+	
+	@Override
+	public List<Device> getDevices() {
+		List<Device> devices = new ArrayList<Device>();
+		
+/*		OperationalSystem os = getOSByName(osName);
+
+		devices.add((List<Device>) getComputersByOS(osName));
+		devices.add((List<Device>) getMobilePhonesByOS(osName));
+		devices.add( getTabletsByOS(osName));
+
+*/		
+		return devices;
+		
+//		return (List<Device>) em.createQuery("FROM Device").getResultList();
+
 		}
 	
 	public void populate() {
-		
+			
 		OperationalSystem os1 = new OperationalSystem("Ouindose");
 		OperationalSystem os = new OperationalSystem("Linoux");
 		
@@ -238,16 +336,15 @@ public class NetworkBean implements Network {
 			em.persist(u1);
 			
 			User u2 = new User("ParTon", "Parker", "Tony");
-			Computer c2 = new Computer("Dell");
+			Computer c2 = new Computer("Dell");			 
 			c2.setOs(os1);
-			System.out.println("Trying to make 2nd user");
 			u2.addComputer(c2);			
 			em.persist(u2);
 			
-			 Computer comp1 = new Computer ("Azus"); 
-			 Computer comp2 = new Computer ("Lenouvo"); 
-			 Computer comp3 = new Computer ("Bell"); 
-			 Computer comp4 = new Computer ("Appeul");
+			Computer comp1 = new Computer ("Azus"); 
+			Computer comp2 = new Computer ("Lenouvo"); 
+			Computer comp3 = new Computer ("Bell"); 
+			Computer comp4 = new Computer ("Appeul");
 			 
 			 comp1.setOs(os1);
 			 comp2.setOs(os);

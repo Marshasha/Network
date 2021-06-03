@@ -6,10 +6,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,12 +32,23 @@ public class User {
 	
 	@Column(name="lastName")
     private String lastName;
-    
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="FK_USER")
+	
+	/**
+	 *  Mapping
+	 */   
+	@ManyToMany (mappedBy = "computerOwners", fetch = FetchType.LAZY)
     private Set<Computer> computers;
+	
+	@OneToMany (mappedBy = "phoneOwner", cascade = CascadeType.ALL)
+    private Set<MobilePhone> phones;
+	
+	@OneToMany (mappedBy = "tabletOwner", cascade = CascadeType.ALL)
+    private Set<Tablet> tablets;
 
-    public void setUserId(long userId) {
+    /**  
+     * Getters/Setters
+     */
+   public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -67,9 +80,7 @@ public class User {
     public String getLoginName() {
         return loginName;
     }
-
-    
-    
+   
     public Set<Computer> getComputers() {
 		return computers;
 	}
@@ -77,25 +88,68 @@ public class User {
 	public void setComputers(Set<Computer> computers) {
 		this.computers = computers;
 	}
+	
+	public Set<MobilePhone> getPhones() {
+		return phones;
+	}
 
+	public void setPhones(Set<MobilePhone> phones) {
+		this.phones = phones;
+	}
+
+	public Set<Tablet> getTablets() {
+		return tablets;
+	}
+
+	public void setTablets(Set<Tablet> tablets) {
+		this.tablets = tablets;
+	}
+
+    /** 
+     * Add/Remove Device
+     */	
+    public void addComputer(Computer c){
+    	computers.add(c);
+    }
+
+    public void removeComputer(Computer c){
+    	computers.remove(c);   	
+    }
+
+    public void addMobilePhone(MobilePhone mp){
+    	phones.add(mp);
+    }
+
+    public void removeMobilePhone(MobilePhone mp){
+    	phones.remove(mp);   	
+    }
+    
+    public void addTablet(Tablet t){
+    	tablets.add(t);
+    }
+
+    public void removeTablet(Tablet t){
+    	tablets.remove(t);   	
+    }
+ 
+    /** 
+     * Constructors 
+    */
 	public User() {
     	this.computers = new HashSet<Computer>();
-    	
+    	this.phones = new HashSet<MobilePhone>();
+    	this.tablets = new HashSet<Tablet>();
+ 
     }
 
     public User (String loginName, String firstName, String lastName){
         this.loginName=loginName;
         this.firstName=firstName;
         this.lastName=lastName;
-        computers = new HashSet<Computer>();
-      
+        
+        this.computers = new HashSet<Computer>();
+    	this.phones = new HashSet<MobilePhone>();
+    	this.tablets = new HashSet<Tablet>();      
     }
 
-    public void addComputer(Computer c){
-    	computers.add(c);
-    	System.out.println("Owner " + this.firstName);
-    	c.addOwner(this);
-    }
-
- 
 }

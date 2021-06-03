@@ -13,13 +13,12 @@
 		<class>ch.hevs.businessobject.OperationalSystem</class>
 		<class>ch.hevs.businessobject.Tablet</class>
 		<class>ch.hevs.businessobject.MobilePhone</class>
-		
+		<class>ch.hevs.businessobject.Device</class>
 	
   		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" /> 
 			<property name="dialect" value="org.hibernate.dialect.HSQLDialect"/>
-
 		</properties> 
 	
 		 
