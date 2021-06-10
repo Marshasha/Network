@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+
+		<h:form>
+			<h:dataTable value="#{distributionBean.devices}" var="device"
+				styleClass="cadre" columnClasses="en-tete">
+				<h:column headerClass="en-tete">
+					<f:facet name="header">Test</f:facet>
+				</h:column>
+				<h:column headerClass="en-tete">
+					<f:facet name="header">Device Name</f:facet>
+					<h:inputText value="#{device.name}" />
+				</h:column>
+				<h:column headerClass="en-tete">
+					<f:facet name="header">Category of device</f:facet>
+					<h:inputText value="#{distributionBean.categoryOfDevice(device)}" />
+				</h:column>
+				
+			</h:dataTable>
+			<h:commandLink action="showUserAccount">
+				<h:outputText value="To welcome User" />
+			</h:commandLink>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

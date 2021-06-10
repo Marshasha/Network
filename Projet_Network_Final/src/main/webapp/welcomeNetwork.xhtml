@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+        <h:outputLabel value="Welcome to Network Manager"></h:outputLabel>
+        <br></br>
+        <h:form>
+         <h:commandLink action="showAdminAccount">
+         <h:outputText value="Admin management" />
+        </h:commandLink>
+<br></br>
+		<h2>OR</h2>
+        <br></br>		
+        <h:outputText value="Choose an user: "></h:outputText>
+					<h:selectOneMenu value="#{distributionBean.userloginName}" 
+					valueChangeListener="#{distributionBean.getChoosedUser}"
+					onchange="submit()">
+						<f:selectItem itemLabel="--Select--" itemValue="" />
+						<f:selectItems value="#{distributionBean.userLoginNames}" />
+					</h:selectOneMenu>
+					<h:commandButton value="User management"
+					action="showUserAccount"></h:commandButton> 
+         <br></br> <br></br>  <br></br>        
+        <h:commandButton value="POPULATE DataBase"
+						action="#{distributionBean.populate}" />
+		<br></br> <br></br>  <br></br> 
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

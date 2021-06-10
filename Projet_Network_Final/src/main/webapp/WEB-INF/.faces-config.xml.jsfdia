@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#welcomeNetwork.xhtml"
+  PATH="/welcomeNetwork.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#welcomeNetwork.xhtml:0" NAME="item"
+   PATH="/welcomeNetwork.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="showAdminAccount::#showAdminAccount.xhtml"
+    NAME="output1" PATH="/showAdminAccount.xhtml"
+    TARGET="rules:#showAdminAccount.xhtml" TITLE="showAdminAccount" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showUserAccount::#showUserAccount.xhtml"
+    NAME="output" PATH="/showUserAccount.xhtml"
+    TARGET="rules:#showUserAccount.xhtml" TITLE="showUserAccount" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showPopulateResult::#showPopulateResult.xhtml" NAME="output2"
+    PATH="/showPopulateResult.xhtml"
+    TARGET="rules:#showPopulateResult.xhtml" TITLE="showPopulateResult" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#justHaveALookOnPark.xhtml"
+  PATH="/justHaveALookOnPark.xhtml" SHAPE="608,176,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#manageParkIT.xhtml"
+  PATH="/manageParkIT.xhtml" SHAPE="320,176,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#manageParkIT.xhtml:0" NAME="item"
+   PATH="/manageParkIT.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="justHaveALookOnPark::#justHaveALookOnPark.xhtml" NAME="output"
+    PATH="/justHaveALookOnPark.xhtml"
+    TARGET="rules:#justHaveALookOnPark.xhtml"
+    TITLE="justHaveALookOnPark" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="addDeviceForm::#addDeviceForm.xhtml"
+    NAME="output1" PATH="/addDeviceForm.xhtml"
+    TARGET="rules:#addDeviceForm.xhtml" TITLE="addDeviceForm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showAdminAccount.xhtml"
+  PATH="/showAdminAccount.xhtml" SHAPE="224,88,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#showAdminAccount.xhtml:0" NAME="item"
+   PATH="/showAdminAccount.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="manageParkIT::#manageParkIT.xhtml"
+    NAME="output" PATH="/manageParkIT.xhtml"
+    TARGET="rules:#manageParkIT.xhtml" TITLE="manageParkIT" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="manageUsers::#manageUsers.xhtml"
+    NAME="output1" PATH="/manageUsers.xhtml"
+    TARGET="rules:#manageUsers.xhtml" TITLE="manageUsers" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#addDeviceForm.xhtml"
+  PATH="/addDeviceForm.xhtml" SHAPE="608,232,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#addNewUser.xhtml" PATH="/addNewUser.xhtml"
+  SHAPE="608,96,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#addNewUser.xhtml:0" NAME="item"
+   PATH="/addNewUser.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showInsertUserResult::#showInsertUserResult.xhtml" NAME="output"
+    PATH="/showInsertUserResult.xhtml"
+    TARGET="rules:#showInsertUserResult.xhtml"
+    TITLE="showInsertUserResult" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showInsertUserResult.xhtml"
+  PATH="/showInsertUserResult.xhtml" SHAPE="800,96,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#manageUsers.xhtml" PATH="/manageUsers.xhtml"
+  SHAPE="320,32,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#manageUsers.xhtml:0" NAME="item"
+   PATH="/manageUsers.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="addNewUser::#addNewUser.xhtml" NAME="output"
+    PATH="/addNewUser.xhtml" TARGET="rules:#addNewUser.xhtml"
+    TITLE="addNewUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showUserDetailForManager::#showUserDetailForManager.xhtml"
+    NAME="output1" PATH="/showUserDetailForManager.xhtml"
+    TARGET="rules:#showUserDetailForManager.xhtml"
+    TITLE="showUserDetailForManager" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showUserAccount.xhtml"
+  PATH="/showUserAccount.xhtml" SHAPE="240,328,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#showUserAccount.xhtml:0" NAME="item"
+   PATH="/showUserAccount.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="showUserDetails::#showUserDetails.xhtml"
+    NAME="output" PATH="/showUserDetails.xhtml"
+    TARGET="rules:#showUserDetails.xhtml" TITLE="showUserDetails" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showDeviceOfConnectedUser::#showDeviceOfConnectedUser.xhtml"
+    NAME="output1" PATH="/showDeviceOfConnectedUser.xhtml"
+    TARGET="rules:#showDeviceOfConnectedUser.xhtml"
+    TITLE="showDeviceOfConnectedUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#showUserDetails.xhtml"
+  PATH="/showUserDetails.xhtml" SHAPE="608,336,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#showPopulateResult.xhtml"
+  PATH="/showPopulateResult.xhtml" SHAPE="56,168,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#showDeviceOfConnectedUser.xhtml"
+  PATH="/showDeviceOfConnectedUser.xhtml" SHAPE="608,384,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#showUserDetailForManager.xhtml"
+  PATH="/showUserDetailForManager.xhtml" SHAPE="630,20,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

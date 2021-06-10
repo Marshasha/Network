@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="networkPU">
+ 		<jta-data-source>java:/labsDS</jta-data-source>
+		
+		<class>ch.hevs.businessobject.User</class>
+		<class>ch.hevs.businessobject.Computer</class>
+<<<<<<< Updated upstream:Projet_Network_Final/target/Network-simpleTP12-0.0.1-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml
+=======
+		<class>ch.hevs.businessobject.OperationalSystem</class>
+		<class>ch.hevs.businessobject.Tablet</class>
+		<class>ch.hevs.businessobject.MobilePhone</class>
+		<class>ch.hevs.businessobject.Device</class>
+>>>>>>> Stashed changes:Projet_Network_Final/src/main/resources/META-INF/persistence.xml
+	
+  		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" /> 
+			<property name="dialect" value="org.hibernate.dialect.HSQLDialect"/>
+		</properties> 
+	
+		 
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+
+		<h:form value="#{distributionBean.device}" var="device">
+			<fieldset>
+				<legend>Informations sur l'ordinateur</legend>
+				 <h:outputText value="Nom : " />
+				<h:inputText defaultValue="Saisissez un nom" value="#{distributionBean.deviceName}" required="true"/>
+				<Br></Br>
+				 <h:outputText value="Type de device : " />
+				  <h:selectOneMenu value="#{distributionBean.classObject}" required="true">
+					<f:selectItem itemLabel="Faites votre choix" noSelectionOption="true" />
+		           <f:selectItem itemLabel="Computer" itemValue="Computer"/>
+		           <f:selectItem itemLabel="MobilePhone" itemValue="MobilePhone" />
+		           <f:selectItem itemLabel="Tablet" itemValue="Tablet" />
+				</h:selectOneMenu>
+			</fieldset>
+			<fieldset>
+				<legend>Informations sur l'Operating System</legend>
+				 <h:outputText value="Nom de l'OS : " />
+				<h:selectOneMenu value="#{distributionBean.osName}" required="true">
+					 <f:selectItem itemLabel="Faites votre choix" noSelectionOption="true" />
+					<f:selectItems value="#{distributionBean.osNames}" />
+				</h:selectOneMenu>
+			</fieldset>
+			<br></br>
+			<h:commandButton value="Créer nouveau Device"
+				action="#{distributionBean.addDevice}" />
+			<br></br>
+			<h:commandLink action="showAdminAccount">
+				<h:outputText value="Admin management" />
+			</h:commandLink>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
